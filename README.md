@@ -15,3 +15,8 @@ tsc
 npm pack
 npm publish
 ```
+
+## Installing as a dependency
+```
+npm i @libralinknetwork/libralink-client-web3js
+```
