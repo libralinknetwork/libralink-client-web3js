@@ -1,0 +1,18 @@
+version: 2.1
+jobs:
+  build:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          command: npm test
+          name: Run tests
+      - run:
+          command: tsc
+          name: Build Library
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .
