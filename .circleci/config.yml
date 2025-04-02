@@ -12,7 +12,10 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
+          command: npm install typescript -g
+      - run:
           command: npm test
+          name: Run tests        
       - run:
           command: tsc
           name: Build Library
