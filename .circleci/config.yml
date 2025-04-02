@@ -1,18 +1,20 @@
 version: 2.1
+orbs:
+  node: circleci/node@5
 jobs:
   build:
+    # Install node dependencies and run tests
     executor: node/default
+    environment:
+      JEST_JUNIT_OUTPUT_DIR: ./test-results/
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
       - run:
           command: npm test
-          name: Run tests
       - run:
           command: tsc
           name: Build Library
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - .
+      - store_test_results:
+          path: ./test-results/
