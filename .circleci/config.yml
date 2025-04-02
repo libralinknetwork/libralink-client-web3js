@@ -5,8 +5,6 @@ jobs:
   build:
     # Install node dependencies and run tests
     executor: node/default
-    environment:
-      JEST_JUNIT_OUTPUT_DIR: ./test-results/
     steps:
       - checkout
       - node/install-packages:
@@ -19,5 +17,3 @@ jobs:
       - run:
           command: tsc
           name: Build Library
-      - store_test_results:
-          path: ./test-results/
