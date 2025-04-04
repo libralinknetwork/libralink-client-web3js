@@ -1,5 +1,3 @@
-export * from "./protocol/header"
-export * from "./protocol/body"
-export * from "./protocol/envelope"
-export * from "./protocol/error"
+export * from "./protocol"
 export * from "./signature"
+

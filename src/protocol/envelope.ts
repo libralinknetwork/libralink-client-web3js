@@ -1,11 +1,11 @@
-import { BodyEnvelope } from "./body";
-import { ErrorEnvelope } from "./error";
-import { HeaderEnvelope } from "./header";
+export type Signature = {
+    pub: string;
+    sig: string;
+}
 
 export type Envelope = {
-    protocolVersion: number;
-    envelopeId: string;
-    header: HeaderEnvelope;
-    body: BodyEnvelope;
-    error: ErrorEnvelope | null;
+    objectType: 'Envelope';
+    id: string;
+    content: object;
+    signature: Signature | null;
 }
