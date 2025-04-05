@@ -1,11 +1,14 @@
-export type Signature = {
-    pub: string;
-    sig: string;
-}
-
 export type Envelope = {
     objectType: 'Envelope';
     id: string;
-    content: object;
-    signature: Signature | null;
+    content: EnvelopeContent;
+    sig: string | null;
+}
+
+export type SignatureReason = 'NONE' | 'IDENTITY' | 'FEE_LOCK' | 'CONFIRM'
+
+export type EnvelopeContent = {
+    entity: object;
+    pub: string;
+    sigReason: SignatureReason;
 }

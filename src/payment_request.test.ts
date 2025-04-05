@@ -1,4 +1,4 @@
-import { ECheck, Envelope } from "./protocol";
+import { ECheck, Envelope, EnvelopeContent } from "./protocol";
 import { SignatureHelper } from "./signature";
 
 
@@ -17,20 +17,20 @@ describe('Payment Request create UC and signing by all the parties', () => {
 
         /* 1. Payee creates E-Check and signs it by Payer & Processor(s) to issue */
         const envelope = createECheckEnvelope(PAYER_ADDR, PROCESSOR_ADDR, PAYEE_ADDR, PROCESSOR_ADDR, 150);
-        const signedEnvelope = SignatureHelper.sign(envelope, PAYER_ADDR, PAYER_PK);
+        const signedEnvelope = SignatureHelper.sign(envelope, PAYER_ADDR, PAYER_PK, 'IDENTITY');
 
-        expect(signedEnvelope.signature?.pub).toBe(PAYER_ADDR);
-        expect(signedEnvelope.signature?.sig).toBe('0x8dab44d1340f615f60ee5d604375d06fe1e937e72f32f12165120bf332ed598d4dab4160008477bffcdfd378dce424745d26fa6a9c0b58f89b1a81e71791cf871c');
+        expect(signedEnvelope.content.pub).toBe(PAYER_ADDR);
+        expect(signedEnvelope.sig).toBe('0xded9970d473b31ec96cf7c9276c2269ebd80dfb889f6a15ccd46a240bd1f20855e8f7f4eeeda6945db75b335e84ee2ae95ed5ba2252c380043f6c61ace878ef11b');
     });
 
     function createECheckEnvelope(payer: string, payerProcessor: string, payee: string, payeeProcessor: string, amount: number) {
 
         const createdAtUtc: number = 1743526954033;
-        const expiresAtUtc: number = 1843526954033;
+        const expiresAtUtc: number = 2743526954133;
 
         const eCheck: ECheck = {
             objectType: 'ECheck',
-            id: '9eef8f11-2baf-4f7a-8529-38fc20444d88',
+            id: 'bfcb823c-4506-4e17-b715-59de993d15fe',
             faceAmount: amount,
             currency: 'USDC',
             payer,
@@ -39,14 +39,20 @@ describe('Payment Request create UC and signing by all the parties', () => {
             payeeProcessor,
             createdAt: createdAtUtc,
             expiresAt: expiresAtUtc,
-            note: null
+            note: 'Online courses payment, order #123'
         }
     
+        const envelopeContent: EnvelopeContent = {
+            entity: eCheck,
+            pub: '0xf39902b133fbdcf926c1f48665c98d1b028d905a',
+            sigReason: 'IDENTITY'
+        }
+
         const envelope: Envelope = {
             objectType: 'Envelope',
-            id: 'e2a3eecd-b99e-4c8f-b3c9-01aacb73a1a4',
-            content: eCheck,
-            signature: null
+            id: '19360ffc-dd19-4294-99ed-d0858082b48d',
+            content: envelopeContent,
+            sig: '0xded9970d473b31ec96cf7c9276c2269ebd80dfb889f6a15ccd46a240bd1f20855e8f7f4eeeda6945db75b335e84ee2ae95ed5ba2252c380043f6c61ace878ef11b'
         }
 
         return envelope;
