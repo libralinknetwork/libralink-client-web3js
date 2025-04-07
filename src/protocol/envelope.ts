@@ -9,6 +9,6 @@ export type SignatureReason = 'NONE' | 'IDENTITY' | 'FEE_LOCK' | 'CONFIRM'
 
 export type EnvelopeContent = {
     entity: object;
-    pub: string;
+    pub: string | null;
     sigReason: SignatureReason;
 }
