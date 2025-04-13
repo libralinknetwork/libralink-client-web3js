@@ -6,7 +6,7 @@ const web3 = new Web3();
 export class SignatureHelper {
 
     static sign = (envelope: Envelope, address: string, pk: string, sigReason: SignatureReason): Envelope => {
-        const envelopeContent: EnvelopeContent = { ...envelope.content, pub: address, sigReason };
+        const envelopeContent: EnvelopeContent = { ...envelope.content, address, sigReason, algorithm: 'SECP256K1', pubKey: null };
         const message = JSON.stringify(envelopeContent);
         const signature = web3.eth.accounts.sign(message, `0x${pk}`).signature;
 

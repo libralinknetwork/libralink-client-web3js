@@ -1,12 +1,14 @@
 export type RegisterKeyRequest = {
     objectType: 'RegisterKeyRequest';
     id: string;
-    pub: string;
-    challenge: string
+    address: string;
+    pubKey: string | null;
+    algorithm: 'SECP256K1';
+    challenge: string;
 }
 
 export type RegisterKeyResponse = {
     objectType: 'RegisterKeyResponse';
     id: string;
-    pub: string;
+    address: string;
 }

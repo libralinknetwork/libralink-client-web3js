@@ -7,8 +7,12 @@ export type Envelope = {
 
 export type SignatureReason = 'NONE' | 'IDENTITY' | 'FEE_LOCK' | 'CONFIRM'
 
+export type SignatureAlgorithm = 'SECP256K1'
+
 export type EnvelopeContent = {
     entity: object;
-    pub: string | null;
+    address: string | null;
+    pubKey: string | null;
     sigReason: SignatureReason;
+    algorithm: SignatureAlgorithm | null;
 }

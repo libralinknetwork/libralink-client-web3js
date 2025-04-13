@@ -1,6 +1,6 @@
 {
   "name": "@libralinknetwork/libralink-client-web3js",
-  "version": "1.0.3",
+  "version": "1.5.0",
   "description": "``` npm login npm whoami",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

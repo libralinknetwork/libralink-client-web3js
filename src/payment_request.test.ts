@@ -19,8 +19,8 @@ describe('Payment Request create UC and signing by all the parties', () => {
         const envelope = createECheckEnvelope();
         const signedEnvelope = SignatureHelper.sign(envelope, PAYER_ADDR, PAYER_PK, 'IDENTITY');
 
-        expect(signedEnvelope.content.pub).toBe(PAYER_ADDR);
-        expect(signedEnvelope.sig).toBe('0xded9970d473b31ec96cf7c9276c2269ebd80dfb889f6a15ccd46a240bd1f20855e8f7f4eeeda6945db75b335e84ee2ae95ed5ba2252c380043f6c61ace878ef11b');
+        expect(signedEnvelope.content.address).toBe(PAYER_ADDR);
+        expect(signedEnvelope.sig).toBe('0x31fe8581e37ecee1168e69af048b6ac89bbef54fd2b851808104e06f6165840536ae2a992cf918843d610774fb53e73e7b37d244f21c58c376718874327b0a8a1c');
     });
 
     function createECheckEnvelope() {
@@ -44,8 +44,10 @@ describe('Payment Request create UC and signing by all the parties', () => {
     
         const envelopeContent: EnvelopeContent = {
             entity: eCheck,
-            pub: null,
-            sigReason: 'NONE'
+            address: null,
+            pubKey: null,
+            sigReason: 'NONE',            
+            algorithm: null
         }
 
         const envelope: Envelope = {

@@ -1,5 +1,5 @@
 export type ProcessorDetails = {
-    pub: string;
+    address: string;
     isDefault: boolean;
 }
 
@@ -12,5 +12,5 @@ export type GetProcessorsResponse = {
 export type GetProcessorsRequest = {
     objectType: 'GetProcessorsRequest';
     id: string;
-    pub: string;
+    address: string;
 }
