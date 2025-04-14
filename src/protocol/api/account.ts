@@ -4,7 +4,8 @@ export type RegisterKeyRequest = {
     address: string;
     pubKey: string | null;
     algorithm: 'SECP256K1';
-    challenge: string;
+    confirmationId: string;
+    hash: string;
 }
 
 export type RegisterKeyResponse = {
